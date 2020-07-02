@@ -1,0 +1,19 @@
+{
+  "name": "ct-compile-students",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "onchange -i -k 'index.js' -- npm run debug",
+    "debug": "node --trace-warnings --inspect-brk index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv": "^5.3.2",
+    "moment": "^2.27.0",
+    "onchange": "^7.0.2"
+  }
+}
