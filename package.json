@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "onchange -i -k 'index.js' -- npm run debug",
-    "debug": "node --trace-warnings --inspect-brk index.js",
+    "start": "node index.mjs",
+    "dev": "onchange -i -k 'index.mjs' './src/**/*.mjs' -- npm run debug",
+    "debug": "node --trace-warnings --inspect-brk index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

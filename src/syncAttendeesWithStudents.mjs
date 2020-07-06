@@ -1,22 +1,7 @@
+import { readCSV } from './util.mjs'
+
 // Reads csv exports from the `data/students.csv` and `data/attendance.csv` spreadsheets and generates a unified, deduplicated list of all students in `data/all-students.csv`
-const {
-    readFile,
-    writeFile
-} = require('fs').promises
-const {
-    join
-} = require('path')
-const parse = require('csv-parse/lib/sync');
-
-const readCSV = async (path /* TODO: needs a better name or to be an already normalized path */ ) => {
-    const fileLocation = join(__dirname, path)
-    const file = await readFile(fileLocation)
-    return parse(file, {
-        columns: true
-    })
-}
-
-const main = async function () {
+export default async () => {
     console.log('Running Main')
     const allStudents = new Map()
     const students = await readCSV('data/students.csv')
@@ -87,6 +72,3 @@ const main = async function () {
 
     debugger
 }
-
-// run it!
-main()
