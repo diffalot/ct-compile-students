@@ -1,10 +1,15 @@
 import syncAttendeesWithStudents from './src/syncAttendeesWithStudents.mjs'
 
-// run it!
 (async () => {
+    let allStudents
+    try {
+        allStudents = await syncAttendeesWithStudents()
+    } catch (e) {
+        console.error(e.message)
+    }
 
-    const allStudents = await syncAttendeesWithStudents()
-    console.log(allStudents)
+    console.log('All Students:')
+    allStudents.forEach((student, email) => { console.log(`${student['Full Name']}: ${email}`)})
+    console.log('')
 
-    debugger
 })()

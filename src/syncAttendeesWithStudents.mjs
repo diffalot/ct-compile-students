@@ -19,8 +19,6 @@ export default async () => {
         return foundStudents
     }
 
-    debugger
-
     // loop through students and add them to the map first because students is the authoratiative source
     students.forEach((student) => {
         let emailAddress = student['Emails'].toLowerCase()
@@ -41,7 +39,6 @@ export default async () => {
         // TODO: only set student if there is no other email address for this student in `allStudents`.  Halt and error if key exists
         if (emailAddress.length > 0 && student.Notes.indexOf('NEEDS INVESTIGATION') < 0) {
             if (allStudents.get(emailAddress)) {
-                debugger
                 throw (new Error(`${emailAddress} already exists: \n ${JSON.stringify(allStudents.get(emailAddress))}`))
             }
             allStudents.set(emailAddress, {
@@ -71,4 +68,5 @@ export default async () => {
     if (missingStudents.length > 0) throw new Error(`found ${missingStudents.length} missing students`)
 
     debugger
+    return allStudents
 }
