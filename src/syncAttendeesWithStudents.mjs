@@ -1,11 +1,6 @@
-import { readCSV } from './util.mjs'
-
-// Reads csv exports from the `data/students.csv` and `data/attendance.csv` spreadsheets and generates a unified, deduplicated list of all students in `data/all-students.csv`
-export default async () => {
-    console.log('Running Main')
+export default async ({ students, attendance }) => {
+    console.log('Compiling list of all students')
     const allStudents = new Map()
-    const students = await readCSV('data/students.csv')
-    const attendance = await readCSV('data/attendance.csv')
 
     // find student by email address, so no multiples exist upon setting a student, should become a method used when inserting students from the attendance array
     const findStudentsByEmail = (email) => {
@@ -56,7 +51,6 @@ export default async () => {
         const foundStudents = findStudentsByEmail(logEntry['Email Address'])
 
         if (foundStudents.length === 0 && logEntry['Email Address'].length > 0) {
-            if (logEntry['Email Address'] === 'reneektom@gmail.com') debugger
             missingStudents.push(logEntry)
         }
     }) 
@@ -67,6 +61,5 @@ export default async () => {
 
     if (missingStudents.length > 0) throw new Error(`found ${missingStudents.length} missing students`)
 
-    debugger
     return allStudents
 }
